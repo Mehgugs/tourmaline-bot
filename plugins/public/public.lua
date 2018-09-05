@@ -139,7 +139,7 @@ local function hasContent(cmd, msg)
     return v
 end
 
-local function call_command(content)
+local function call_command(msg, content)
     local info = T.Command.find(content:trim())
     if info then
         local cmd = Group:resolve(info.command)
@@ -155,7 +155,7 @@ local function call_command(content)
     end
 end
 
-local function call_command_args(content, ...)
+local function call_command_args(msg, content, ...)
     local info = T.Command.find(content:trim())
     if info then
         local cmd = Group:resolve(info.command)
@@ -946,9 +946,9 @@ end
 local function command_docs(cmd, msg, content, ...) 
     content = content:trim()
     if content == 'methods' then
-        return call_command_args("->docs.methods", ...)
+        return call_command_args(msg, "->docs.methods", ...)
     elseif content == 'properties' then 
-        return call_command_args("->docs.properties", ...)
+        return call_command_args(msg, "->docs.properties", ...)
     elseif is_single:match(content) then 
         return command_property(cmd, msg, content) or command_method(cmd, msg, content)
     else
@@ -1224,7 +1224,7 @@ end
 
 local function command_permissify(cmd, msg, content)
     if content then
-        call_command(content)
+        call_command(msg, content)
     end
 end
 
