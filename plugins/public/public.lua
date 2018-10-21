@@ -465,7 +465,7 @@ local function command_ginfo(cmd, msg)
 		}
     }
 end
-local gh = Github(cfg["github-token"], "Mehgugs")
+local gh = Github(cfg["github-token"], "<your account here>")
 
 local function exactly(n, p) 
     local patt = lpeg.P(p)
@@ -1271,7 +1271,7 @@ local regular_patt = lpeg.P(PublicCommand.prefix)
 local cleaner = regular_patt + admin_patt
 
 local function predicate (i) 
-    return i.author.id == "269653692729262090" or cleaner:match(i.content) 
+    return i.author.id == "<bot's id here>" or cleaner:match(i.content) 
 end
 
 local function command_nuke(_,msg)
